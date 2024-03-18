@@ -1,0 +1,82 @@
+[
+    {
+        "Id": "1",
+        "Image": "skillsJava.png"
+    },
+    {
+        "Id": "2",
+        "Image": "skillsCss.png"
+    },
+    {
+        "Id": "3",
+        "Image": "skillsReact.png"
+    },
+    {
+        "Id": "4",
+        "Image": "skillsPhp.png"
+    },
+    {
+        "Id": "5",
+        "Image": "skillsCsharp.png"
+    },
+    {
+        "Id": "6",
+        "Image": "skillsJS.png"
+    },
+    {
+        "Id": "7",
+        "Image": "skillsJava.png"
+    },
+    {
+        "Id": "8",
+        "Image": "skillsCsharp.png"
+    },
+    {
+        "Id": "9",
+        "Image": "skillsJava.png"
+    },
+    {
+        "Id": "10",
+        "Image": "skillsJS.png"
+    },
+    {
+        "Id": "11",
+        "Image": "skillsPython.png"
+    },
+    {
+        "Id": "12",
+        "Image": "skillsPython.png"
+    },
+    {
+        "Id": "13",
+        "Image": "skillsCsharp.png"
+    },
+    {
+        "Id": "14",
+        "Image": "skillsCsharp.png"
+    },
+    {
+        "Id": "15",
+        "Image": "skillsPython.png"
+    },
+    {
+        "Id": "16",
+        "Image": "skillsJava.png"
+    },
+    {
+        "Id": "17",
+        "Image": "skillsJava.png"
+    },
+    {
+        "Id": "18",
+        "Image": "skillsCss.png"
+    },
+    {
+        "Id": "19",
+        "Image": "skillsJS.png"
+    },
+    {
+        "Id": "20",
+        "Image": "skillsCss.png"
+    }
+]

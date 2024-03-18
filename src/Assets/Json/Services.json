@@ -1,0 +1,26 @@
+[
+    {
+        "Id": "1",
+        "Image": "servicesAdmin.png",
+        "Title": "ADMINISTRATION",
+        "Description": "Je propose des services d'administration pour vous aider à gérer efficacement vos systèmes informatiques."
+    },
+    {
+        "Id": "2",
+        "Image": "servicesCode.png",
+        "Title": "PROGRAMMATION",
+        "Description": "Je propose des services de programmation sur mesure pour répondre à vos besoins spécifiques."
+    },    
+    {
+        "Id": "3",
+        "Image": "servicesDataBase.png",
+        "Title": "GESTION BASE DE DONNEES",
+        "Description": "Je propose des services de gestion de base de données pour vous aider à organiser et à gérer vos données."
+    },
+    {
+        "Id": "4",
+        "Image": "servicesWeb.png",
+        "Title": "DEVELOPPEMENT WEB",
+        "Description": "Je propose des services de développement web pour créer des sites web dynamiques et fonctionnels."
+    }    
+]

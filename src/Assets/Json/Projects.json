@@ -1,0 +1,51 @@
+[
+    {
+        "Id": "1",
+        "Name": "PORTFOLIO",
+        "Description": "Un portfolio est un site Internet personnel qui présente les travaux d'un individu, ses compétences et expériences professionnelles.",
+        "ImgScr": "projectPortfolio.svg",
+        "Idmodal": ""
+    },
+    {
+        "Id": "2",
+        "Name": "ECOMMERCE",
+        "Description": "Un site e-commerce est conçu pour la vente de produits en ligne. Il offre aux utilisateurs la possibilité d'acheter ou vendre des produits en ligne",
+        "ImgScr": "projectEcommerce.svg",
+        "Idmodal": ""
+    },
+    {
+        "Id": "3",
+        "Name": "APP MOBILE",
+        "Description": "Une application mobile est un programme, ou logiciel conçu pour fonctionner sur des appareil mobile également tels que smartphone, tv, watch ...etc",
+        "ImgScr": "projectMobile.svg",
+        "Idmodal": ""
+    },
+    {
+        "Id": "4",
+        "Name": "BITCOIN APP",
+        "Description": "C'est un projet permettant de creer une monnaie virtuel qui peut etre utilise pour des achats en ligne ou meme pour des echanges virtuel de produits.",
+        "ImgScr": "projectBitcoin.svg",
+        "Idmodal": ""
+    },
+    {
+        "Id": "5",
+        "Name": "APP MOBILE",
+        "Description": "Une application mobile est un programme, ou logiciel conçu pour fonctionner sur des appareil mobile également tels que smartphone, tv, watch ...etc",
+        "ImgScr": "projectMobile.svg",
+        "Idmodal": ""
+    },
+    {
+        "Id": "6",
+        "Name": "PORTFOLIO",
+        "Description": "Un portfolio est un site Internet personnel qui présente les travaux d'un individu, ses compétences et expériences professionnelles.",
+        "ImgScr": "projectPortfolio.svg",
+        "Idmodal": ""
+    },
+    {
+        "Id": "7",
+        "Name": "ECOMMERCE",
+        "Description": "Un site e-commerce est conçu pour la vente de produits en ligne. Il offre aux utilisateurs la possibilité d'acheter ou vendre des produits en ligne",
+        "ImgScr": "projectEcommerce.svg",
+        "Idmodal": ""
+    }
+]
