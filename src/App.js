@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -55,6 +56,7 @@ function App() {
               ↑
             </button>
           )}
+          <Analytics />
         </div>
       </LanguageProvider>
     </ThemeProvider>
