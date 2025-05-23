@@ -42,7 +42,7 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: FaLinkedin, url: "https://linkedin.com", color: "#0A66C2" },
+    { icon: FaLinkedin, url: "https://www.linkedin.com/in/florianzougou/", color: "#0A66C2" },
     { icon: FaGithub, url: "https://github.com/jesuiszed", color: isDark ? "#FFFFFF" : "#000000" },
   ];
 

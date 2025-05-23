@@ -38,7 +38,7 @@ const Footer = () => {
               <FaGithub size={24} />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/florianzougou/"
               target="_blank"
               rel="noopener noreferrer"
               className={`${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors duration-200`}

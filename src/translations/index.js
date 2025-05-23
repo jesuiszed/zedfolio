@@ -19,7 +19,7 @@ export const translations = {
     },
     about: {
       title: "About Me",
-      description: "I'm a passionate software developer specializing in artificial intelligence and prompt engineering. My journey combines cutting-edge AI technologies with robust full-stack development to create innovative solutions that push the boundaries of what's possible!",
+      description: "I'm a passionate software developer with expertise in full-stack development and artificial intelligence. I create robust, scalable applications while exploring cutting-edge AI technologies to build innovative solutions that make a real impact.",
       bulletPoints: {
         student: "🎓 Computer Science Engineering Student",
         specialist: "🌐 Network & IT Systems Specialist",
@@ -105,7 +105,7 @@ export const translations = {
     },
     about: {
       title: "À propos de moi",
-      description: "Je suis un développeur logiciel passionné, spécialisé dans l'intelligence artificielle et l'ingénierie de prompts. Mon parcours combine les technologies d'IA de pointe avec un développement full-stack robuste pour créer des solutions innovantes qui repoussent les limites du possible.",
+      description: "Je suis un développeur logiciel passionné avec une expertise en développement full-stack et en intelligence artificielle. Je crée des applications robustes et évolutives tout en explorant les technologies d'IA de pointe pour construire des solutions innovantes qui ont un impact réel.",
       bulletPoints: {
         student: "🎓 Étudiant en Génie Informatique",
         specialist: "🌐 Spécialiste Réseaux & Systèmes",

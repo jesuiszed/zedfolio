@@ -10,7 +10,7 @@ const Hero = () => {
   const { isDark } = useTheme();
   
   const [text] = useTypewriter({
-    words: ['Full Stack Developer', 'Prompt engineer', 'Creative Innovator', 'Problem Solver'],
+    words: ['Full Stack Developer', 'AI Developer', 'Software Engineer', 'Tech Innovator'],
     loop: true,
     delaySpeed: 3000,
     deleteSpeed: 50,
