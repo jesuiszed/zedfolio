@@ -3,25 +3,29 @@ import { useTheme } from '../context/ThemeContext';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
 const ThemeToggle = () => {
-    const { isDark, toggleTheme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
 
-    return (
-        <motion.button
-            onClick={toggleTheme}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ rotate: 360 }}
-            transition={{ duration: 0.4 }}
-            className="p-3 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500
-                       dark:from-blue-800 dark:to-purple-800 shadow-lg
-                       hover:shadow-xl transform transition-all duration-300"
-            aria-label="Toggle Theme"
-        >
-            {isDark ? 
-                <FaSun className="text-yellow-200 text-xl animate-spin-slow" /> : 
-                <FaMoon className="text-gray-800 text-xl animate-bounce-slow" />
-            }
-        </motion.button>
-    );
+  return (
+    <motion.button
+      onClick={toggleTheme}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className={`p-2 rounded-lg ${
+        isDark 
+          ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400' 
+          : 'bg-gray-200 hover:bg-gray-300 text-gray-700'
+      } transition-colors duration-200`}
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+    >
+      <motion.div
+        initial={false}
+        animate={{ rotate: isDark ? 0 : 180 }}
+        transition={{ duration: 0.3 }}
+      >
+        {isDark ? <FaSun size={18} /> : <FaMoon size={18} />}
+      </motion.div>
+    </motion.button>
+  );
 };
 
 export default ThemeToggle;

@@ -1,29 +1,32 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 
 const LanguageToggle = () => {
-    const { language, toggleLanguage } = useLanguage();
+  const { language, toggleLanguage } = useLanguage();
+  const { isDark } = useTheme();
 
-    return (
-        <motion.button
-            onClick={toggleLanguage}
-            whileHover={{ rotateY: 180 }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ duration: 0.4 }}
-            className="relative px-4 py-2 rounded-lg font-bold text-lg
-                      bg-gradient-to-r from-pink-500 to-purple-500
-                      hover:from-pink-600 hover:to-purple-600
-                      text-white shadow-lg transform perspective-1000
-                      hover:shadow-pink-500/25 hover:shadow-xl"
-        >
-            <span className={`transition-transform duration-300 ${language === 'en' ? 'block' : 'hidden'}`}>
-                🇫🇷 FR
-            </span>
-            <span className={`transition-transform duration-300 ${language === 'fr' ? 'block' : 'hidden'}`}>
-                🇬🇧 EN
-            </span>
-        </motion.button>
-    );
+  return (
+    <motion.button
+      onClick={toggleLanguage}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className={`px-3 py-2 rounded-lg ${
+        isDark 
+          ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+          : 'bg-gray-200 hover:bg-gray-300 text-gray-700'
+      } transition-colors duration-200 font-medium`}
+      aria-label={`Switch to ${language === 'en' ? 'French' : 'English'}`}
+    >
+      <motion.span
+        initial={false}
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 0.3 }}
+      >
+        {language === 'en' ? 'FR' : 'EN'}
+      </motion.span>
+    </motion.button>
+  );
 };
 
 export default LanguageToggle;

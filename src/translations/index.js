@@ -9,8 +9,9 @@ export const translations = {
     },
     hero: {
       greeting: "Hi, I'm",
+      iAm: "I am a",
       title: "Network & IT Systems Engineer",
-      subtitle: "Full Stack Developer | Cybersecurity Enthusiast | AI Explorer",
+      subtitle: "Full Stack Developer | AI Enthusiast | Prompt Engineer | Creative Problem Solver",
       buttons: {
         contact: "Contact Me",
         github: "View GitHub"
@@ -18,7 +19,7 @@ export const translations = {
     },
     about: {
       title: "About Me",
-      description: "I'm a Computer Science Engineering student specializing in Network and IT Systems. My tech journey is driven by passion and curiosity!",
+      description: "I'm a passionate software developer specializing in artificial intelligence and prompt engineering. My journey combines cutting-edge AI technologies with robust full-stack development to create innovative solutions that push the boundaries of what's possible!",
       bulletPoints: {
         student: "🎓 Computer Science Engineering Student",
         specialist: "🌐 Network & IT Systems Specialist",
@@ -94,8 +95,9 @@ export const translations = {
     },
     hero: {
       greeting: "Bonjour, je suis",
+      iAm: "Je suis un",
       title: "Ingénieur Réseaux & Systèmes",
-      subtitle: "Développeur Full Stack | Passionné de Cybersécurité | Explorateur IA",
+      subtitle: "Développeur Full Stack | Passionné d'IA | Ingénieur Prompt | Résolveur de Problèmes Créatif",
       buttons: {
         contact: "Me Contacter",
         github: "Voir GitHub"
@@ -103,7 +105,7 @@ export const translations = {
     },
     about: {
       title: "À propos de moi",
-      description: "Je suis étudiant en génie informatique, spécialisé dans les réseaux et systèmes. Mon parcours technologique est guidé par la passion et la curiosité !",
+      description: "Je suis un développeur logiciel passionné, spécialisé dans l'intelligence artificielle et l'ingénierie de prompts. Mon parcours combine les technologies d'IA de pointe avec un développement full-stack robuste pour créer des solutions innovantes qui repoussent les limites du possible.",
       bulletPoints: {
         student: "🎓 Étudiant en Génie Informatique",
         specialist: "🌐 Spécialiste Réseaux & Systèmes",
