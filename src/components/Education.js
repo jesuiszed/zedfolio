@@ -132,7 +132,6 @@ const Education = () => {
                   key={index}
                   variants={itemVariants}
                   className={`relative flex items-center 
-                    ${/* Mobile: all cards align left, Desktop: alternating */ ''}
                     justify-start md:${isEven ? 'justify-start' : 'justify-end'}`}
                 >
                   {/* Timeline Dot - Responsive positioning */}
@@ -160,9 +159,8 @@ const Education = () => {
                     className={`w-full p-4 md:p-6 rounded-2xl ${
                       isDark ? 'bg-white/5 border border-white/10' : 'bg-white border border-gray-200'
                     } backdrop-blur-sm shadow-xl
-                    ${/* Mobile: margin left for timeline, Desktop: responsive margins */ ''}
                     ml-16 md:ml-0 md:max-w-md 
-                    md:${isEven ? 'mr-auto md:pr-16' : 'ml-auto md:pl-16'}`}
+                    ${isEven ? 'md:mr-auto md:pr-16' : 'md:ml-auto md:pl-16'}`}
                   >
                     {/* Header - Responsive layout */}
                     <div className="flex flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0 mb-3">
