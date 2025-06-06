@@ -23,7 +23,8 @@ const featuredProjects = [
       { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
       { name: "Node.js", icon: FaNodeJs, color: "#339933" }
     ],
-    featured: false
+    featured: false,
+    isFreelance: false
   },
   {
     title: "2FA Dotnet",
@@ -33,7 +34,8 @@ const featuredProjects = [
     technologies: [
       { name: "CSS", icon: SiCss3, color: "#1572B6" }
     ],
-    featured: false
+    featured: false,
+    isFreelance: true
   },
   {
     title: "Gestion Voyage",
@@ -43,7 +45,8 @@ const featuredProjects = [
     technologies: [
       { name: "Python", icon: SiPython, color: "#3776AB" }
     ],
-    featured: false
+    featured: false,
+    isFreelance: false
   }
 ];
 
@@ -190,6 +193,22 @@ const featuredProjects = [
                     )}
                   </motion.div>
                 </div>
+
+                {/* Freelance Badge */}
+                {project.isFreelance && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="absolute top-4 right-4 z-10"
+                  >
+                    <motion.span
+                      whileHover={{ scale: 1.1 }}
+                      className="px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg backdrop-blur-sm"
+                    >
+                      Freelance
+                    </motion.span>
+                  </motion.div>
+                )}
 
                 {/* Project Info */}
                 <div className="p-6 flex flex-col h-full">
@@ -347,7 +366,8 @@ const featuredProjects = [
                       liveUrl: null,
                       technologies: [
                         { name: "TypeScript", icon: SiTypescript, color: "#3178C6" }
-                      ]
+                      ],
+                      isFreelance: true
                     },
                     {
                       title: "Zedfolio Portfolio",
@@ -356,7 +376,8 @@ const featuredProjects = [
                       liveUrl: "https://zedfolio-florian-zeds-projects.vercel.app",
                       technologies: [
                         { name: "React", icon: FaReact, color: "#61DAFB" }
-                      ]
+                      ],
+                      isFreelance: false
                     },
                     {
                       title: "Noel V2",
@@ -365,7 +386,8 @@ const featuredProjects = [
                       liveUrl: "https://noel-v2.vercel.app",
                       technologies: [
                         { name: "CSS", icon: SiCss3, color: "#1572B6" }
-                      ]
+                      ],
+                      isFreelance: false
                     },
                     {
                       title: "InterlocTP Flutter",
@@ -375,7 +397,8 @@ const featuredProjects = [
                       technologies: [
                         { name: "Dart", icon: SiDart, color: "#0175C2" },
                         { name: "Flutter", icon: SiFlutter, color: "#02569B" }
-                      ]
+                      ],
+                      isFreelance: false
                     }
                   ].map((project, index) => (
                     <motion.div
@@ -392,6 +415,16 @@ const featuredProjects = [
                         isDark ? 'text-white' : 'text-gray-900'
                       }`}>
                         {project.title}
+                        {project.isFreelance && (
+                          <motion.span
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.05 }}
+                            className="ml-3 px-2 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg"
+                          >
+                            Freelance
+                          </motion.span>
+                        )}
                       </h4>
                       
                       <p className={`text-sm mb-4 ${

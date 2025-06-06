@@ -2,7 +2,9 @@ import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
+import { emailjsConfig } from '../config/emailjs';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -16,6 +18,10 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
+  const [errors, setErrors] = useState({});
 
   const contactInfo = [
     {
@@ -69,17 +75,112 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    
+    // Validation des champs
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'Le nom est requis';
+    if (!formData.email.trim()) newErrors.email = 'L\'email est requis';
+    if (!formData.email.includes('@')) newErrors.email = 'Email invalide';
+    if (!formData.message.trim()) newErrors.message = 'Le message est requis';
+    
+    setErrors(newErrors);
+    
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+
+    // Vérification de la configuration EmailJS
+    console.log('Configuration EmailJS:', {
+      serviceId: emailjsConfig.serviceId,
+      templateId: emailjsConfig.templateId,
+      publicKey: emailjsConfig.publicKey ? 'Configuré' : 'NON CONFIGURÉ'
+    });
+
+    if (emailjsConfig.publicKey === 'your_public_key' || emailjsConfig.publicKey === 'VOTRE_VRAIE_PUBLIC_KEY_ICI') {
+      setSubmitStatus('error');
+      console.error('❌ EmailJS pas configuré! Veuillez mettre à jour le fichier .env avec vos vraies clés.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Préparer les données pour EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject || 'Contact depuis le portfolio',
+        message: formData.message,
+        to_name: 'Florian Zed', // Votre nom
+      };
+
+      console.log('Envoi du message avec les paramètres:', templateParams);
+
+      // Envoyer l'email via EmailJS
+      const response = await emailjs.send(
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
+        templateParams,
+        emailjsConfig.publicKey
+      );
+
+      console.log('✅ Email envoyé avec succès!', response.status, response.text);
+      
+      // Réinitialiser le formulaire
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+      
+      setSubmitStatus('success');
+      
+      // Effacer le message de succès après 5 secondes
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+
+    } catch (error) {
+      console.error('❌ Erreur lors de l\'envoi de l\'email:', error);
+      
+      // Messages d'erreur spécifiques
+      if (error.text && error.text.includes('Public Key is invalid')) {
+        console.error('🔑 Clé publique EmailJS invalide! Vérifiez votre .env');
+      } else if (error.text && error.text.includes('Template ID')) {
+        console.error('📄 Template ID invalide! Vérifiez votre template EmailJS');
+      } else if (error.text && error.text.includes('Service ID')) {
+        console.error('🔧 Service ID invalide! Vérifiez votre service EmailJS');
+      }
+      
+      setSubmitStatus('error');
+      
+      // Effacer le message d'erreur après 5 secondes
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    
+    // Effacer l'erreur du champ quand l'utilisateur commence à taper
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
   };
 
   return (
@@ -222,6 +323,33 @@ const Contact = () => {
 
           {/* Contact Form */}
           <motion.div variants={itemVariants}>
+            {/* Status Messages */}
+            {submitStatus && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className={`mb-6 p-4 rounded-2xl flex items-center space-x-3 ${
+                  submitStatus === 'success'
+                    ? isDark ? 'bg-green-500/10 border border-green-500/20 text-green-400' 
+                             : 'bg-green-50 border border-green-200 text-green-700'
+                    : isDark ? 'bg-red-500/10 border border-red-500/20 text-red-400'
+                             : 'bg-red-50 border border-red-200 text-red-700'
+                }`}
+              >
+                {submitStatus === 'success' ? (
+                  <FaCheckCircle className="text-xl" />
+                ) : (
+                  <FaExclamationTriangle className="text-xl" />
+                )}
+                <span className="font-medium">
+                  {submitStatus === 'success' 
+                    ? 'Message envoyé avec succès ! Je vous répondrai bientôt.' 
+                    : 'Erreur lors de l\'envoi. Vérifiez la configuration EmailJS dans la console.'}
+                </span>
+              </motion.div>
+            )}
+
             <motion.form
               onSubmit={handleSubmit}
               className={`p-8 rounded-3xl ${
@@ -233,7 +361,7 @@ const Contact = () => {
                   <label className={`block text-sm font-medium mb-2 ${
                     isDark ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Name
+                    Name *
                   </label>
                   <input
                     type="text"
@@ -241,18 +369,29 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 rounded-xl border ${
-                      isDark ? 'bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-purple-500' 
-                             : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-purple-500'
+                      errors.name 
+                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+                        : isDark ? 'bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-purple-500' 
+                                 : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-purple-500'
                     } focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all`}
-                    placeholder="Your name"
+                    placeholder="Votre nom"
                   />
+                  {errors.name && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-red-500 text-sm mt-1"
+                    >
+                      {errors.name}
+                    </motion.p>
+                  )}
                 </motion.div>
                 
                 <motion.div whileFocus={{ scale: 1.02 }}>
                   <label className={`block text-sm font-medium mb-2 ${
                     isDark ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Email
+                    Email *
                   </label>
                   <input
                     type="email"
@@ -260,11 +399,22 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 rounded-xl border ${
-                      isDark ? 'bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-purple-500' 
-                             : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-purple-500'
+                      errors.email 
+                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+                        : isDark ? 'bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-purple-500' 
+                                 : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-purple-500'
                     } focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all`}
-                    placeholder="your.email@example.com"
+                    placeholder="votre.email@exemple.com"
                   />
+                  {errors.email && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-red-500 text-sm mt-1"
+                    >
+                      {errors.email}
+                    </motion.p>
+                  )}
                 </motion.div>
               </div>
 
@@ -272,7 +422,7 @@ const Contact = () => {
                 <label className={`block text-sm font-medium mb-2 ${
                   isDark ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Subject
+                  Sujet
                 </label>
                 <input
                   type="text"
@@ -283,7 +433,7 @@ const Contact = () => {
                     isDark ? 'bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-purple-500' 
                            : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-purple-500'
                   } focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all`}
-                  placeholder="Project discussion"
+                  placeholder="Discussion de projet"
                 />
               </motion.div>
 
@@ -291,7 +441,7 @@ const Contact = () => {
                 <label className={`block text-sm font-medium mb-2 ${
                   isDark ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Message
+                  Message *
                 </label>
                 <textarea
                   name="message"
@@ -299,23 +449,46 @@ const Contact = () => {
                   onChange={handleChange}
                   rows={6}
                   className={`w-full px-4 py-3 rounded-xl border ${
-                    isDark ? 'bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-purple-500' 
-                           : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-purple-500'
+                    errors.message 
+                      ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+                      : isDark ? 'bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-purple-500' 
+                               : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-purple-500'
                   } focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all resize-none`}
-                  placeholder="Tell me about your project..."
+                  placeholder="Parlez-moi de votre projet..."
                 />
+                {errors.message && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-red-500 text-sm mt-1"
+                  >
+                    {errors.message}
+                  </motion.p>
+                )}
               </motion.div>
 
               <motion.button
                 type="submit"
+                disabled={isSubmitting}
                 whileHover={{ 
-                  scale: 1.02,
-                  boxShadow: "0 20px 40px rgba(147, 51, 234, 0.4)"
+                  scale: isSubmitting ? 1 : 1.02,
+                  boxShadow: isSubmitting ? undefined : "0 20px 40px rgba(147, 51, 234, 0.4)"
                 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                className={`w-full font-semibold py-4 px-8 rounded-xl shadow-xl transition-all duration-300 ${
+                  isSubmitting
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-purple-500 to-blue-500 hover:shadow-2xl'
+                } text-white`}
               >
-                Send Message
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center space-x-2">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <span>Envoi en cours...</span>
+                  </div>
+                ) : (
+                  'Envoyer le message'
+                )}
               </motion.button>
             </motion.form>
           </motion.div>

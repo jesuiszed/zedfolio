@@ -3,6 +3,7 @@ export const translations = {
     nav: {
       home: "Home",
       about: "About",
+      education: "Education",
       skills: "Skills",
       projects: "Projects",
       contact: "Contact"
@@ -45,6 +46,24 @@ export const translations = {
         advanced: "Advanced"
       },
       footer: "And many more technologies in my learning journey..."
+    },
+    education: {
+      title: "Academic Journey",
+      baccalaureate: {
+        title: "Scientific Baccalaureate",
+        institution: "Private High School Le Triomphe - Lewaï Foundation",
+        description: "General scientific education with specialization in mathematics and biology"
+      },
+      preparatory: {
+        title: "Integrated Preparatory Classes", 
+        institution: "Moroccan School of Engineering Sciences (EMSI)",
+        description: "Intensive training in mathematics, physics, computer science and engineering sciences"
+      },
+      engineering: {
+        title: "Engineering Cycle",
+        institution: "Moroccan School of Engineering Sciences (EMSI)", 
+        description: "Specialization in computer science, networks and information systems"
+      }
     },
     projects: {
       title: "Featured Projects",
@@ -89,6 +108,7 @@ export const translations = {
     nav: {
       home: "Accueil",
       about: "À propos",
+      education: "Formation",
       skills: "Compétences",
       projects: "Projets",
       contact: "Contact"
@@ -131,6 +151,24 @@ export const translations = {
         advanced: "Avancé"
       },
       footer: "Et bien d'autres technologies dans mon parcours d'apprentissage..."
+    },
+    education: {
+      title: "Parcours Académique",
+      baccalaureate: {
+        title: "Baccalauréat Scientifique",
+        institution: "Lycée privé Le Triomphe - Fondation Lewaï", 
+        description: "Formation scientifique générale avec spécialisation en mathématiques et biologie"
+      },
+      preparatory: {
+        title: "Classes Préparatoires Intégrées",
+        institution: "École Marocaine des Sciences de l'Ingénieur (EMSI)",
+        description: "Formation intensive en mathématiques, physique, informatique et sciences de l'ingénieur"
+      },
+      engineering: {
+        title: "Cycle Ingénieur", 
+        institution: "École Marocaine des Sciences de l'Ingénieur (EMSI)",
+        description: "Spécialisation en informatique, réseaux et systèmes d'information"
+      }
     },
     projects: {
       title: "Projets Récents",

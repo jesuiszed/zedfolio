@@ -117,8 +117,8 @@ const About = () => {
             {/* CV Download Button */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
               <motion.a
-                href="/cv_florian_zed.pdf"
-                download="CV_Florian_Zed.pdf"
+                href="/cv.pdf"
+                download="cv.pdf"
                 whileHover={{ 
                   y: -5, 
                   scale: 1.05,
