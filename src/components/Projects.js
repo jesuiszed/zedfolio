@@ -2,8 +2,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaTimes, FaPython, FaJs, FaJava } from 'react-icons/fa';
-import { SiNextdotjs, SiTailwindcss, SiTypescript, SiJavascript, SiPython, SiMongodb, SiExpress, SiHtml5, SiCss3, SiDart, SiFlutter, SiDotnet, SiDjango, SiBootstrap, SiSpring, SiKotlin, SiCsharp } from 'react-icons/si';
+import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaTimes, FaPython, FaJs, FaJava, FaCode } from 'react-icons/fa';
+import { SiNextdotjs, SiTailwindcss, SiTypescript, SiJavascript, SiPython, SiMongodb, SiExpress, SiHtml5, SiCss3, SiDart, SiFlutter, SiDotnet, SiDjango, SiBootstrap, SiSpring, SiKotlin } from 'react-icons/si';
 
 const Projects = () => {
   const { t } = useLanguage();
@@ -31,7 +31,7 @@ const Projects = () => {
       githubUrl: "https://github.com/jesuiszed/2faDotnet",
       liveUrl: null,
       technologies: [
-        { name: "C#", icon: SiCsharp, color: "#239120" },
+        { name: "C#", icon: FaCode, color: "#239120" },
         { name: ".NET", icon: SiDotnet, color: "#512BD4" }
       ],
       featured: true,
@@ -43,7 +43,7 @@ const Projects = () => {
       githubUrl: "https://github.com/jesuiszed/gstockApi",
       liveUrl: null,
       technologies: [
-        { name: "C#", icon: SiCsharp, color: "#239120" },
+        { name: "C#", icon: FaCode, color: "#239120" },
         { name: ".NET", icon: SiDotnet, color: "#512BD4" }
       ],
       featured: true,
