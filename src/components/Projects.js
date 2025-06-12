@@ -35,7 +35,7 @@ const Projects = () => {
         { name: ".NET", icon: SiDotnet, color: "#512BD4" }
       ],
       featured: true,
-      isFreelance: true
+      isFreelance: false
     },
     {
       title: "GStock API",
@@ -75,7 +75,7 @@ const Projects = () => {
         { name: "Django", icon: SiDjango, color: "#092E20" },
         { name: "TailwindCSS", icon: SiTailwindcss, color: "#06B6D4" }
       ],
-      isFreelance: false
+      isFreelance: true
     },
     {
       title: "Kouty Medical Service",
@@ -120,7 +120,7 @@ const Projects = () => {
         { name: "Java", icon: FaJava, color: "#007396" },
         { name: "Kotlin", icon: SiKotlin, color: "#7F52FF" }
       ],
-      isFreelance: true
+      isFreelance: false
     },
     {
       title: "VOD Service",
@@ -131,7 +131,7 @@ const Projects = () => {
         { name: "Java", icon: FaJava, color: "#007396" },
         { name: "Spring Boot", icon: SiSpring, color: "#6DB33F" }
       ],
-      isFreelance: true
+      isFreelance: false
     }
   ];
 
