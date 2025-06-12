@@ -12,43 +12,86 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
   const [showModal, setShowModal] = useState(false);
 
-
-const featuredProjects = [
+  const featuredProjects = [
     {
-    title: "GStock API",
-    description: "API de gestion de stock développée en JavaScript, permettant la gestion complète des articles et des mouvements de stock.",
-    githubUrl: "https://github.com/jesuiszed/gstockApi",
-    liveUrl: null,
-    technologies: [
-      { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
-      { name: "Node.js", icon: FaNodeJs, color: "#339933" }
-    ],
-    featured: false,
-    isFreelance: false
-  },
-  {
-    title: "2FA Dotnet",
-    description: "Projet d'authentification à double facteur (2FA) en .NET, incluant interface web sécurisée et gestion avancée de la sécurité.",
-    githubUrl: "https://github.com/jesuiszed/2faDotnet",
-    liveUrl: null,
-    technologies: [
-      { name: "CSS", icon: SiCss3, color: "#1572B6" }
-    ],
-    featured: false,
-    isFreelance: true
-  },
-  {
-    title: "Gestion Voyage",
-    description: "Application de gestion de voyages développée en Python avec interface utilisateur intuitive et fonctionnalités complètes.",
-    githubUrl: "https://github.com/jesuiszed/GestionVoyage0",
-    liveUrl: null,
-    technologies: [
-      { name: "Python", icon: SiPython, color: "#3776AB" }
-    ],
-    featured: false,
-    isFreelance: false
-  }
-];
+      title: "GStock API",
+      description: "API de gestion de stock développée en JavaScript, permettant la gestion complète des articles et des mouvements de stock.",
+      githubUrl: "https://github.com/jesuiszed/gstockApi",
+      liveUrl: null,
+      technologies: [
+        { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+        { name: "Node.js", icon: FaNodeJs, color: "#339933" }
+      ],
+      featured: false,
+      isFreelance: false
+    },
+    {
+      title: "2FA Dotnet",
+      description: "Projet d'authentification à double facteur (2FA) en .NET, incluant interface web sécurisée et gestion avancée de la sécurité.",
+      githubUrl: "https://github.com/jesuiszed/2faDotnet",
+      liveUrl: null,
+      technologies: [
+        { name: "CSS", icon: SiCss3, color: "#1572B6" }
+      ],
+      featured: false,
+      isFreelance: true
+    },
+    {
+      title: "Gestion Voyage",
+      description: "Application de gestion de voyages développée en Python avec interface utilisateur intuitive et fonctionnalités complètes.",
+      githubUrl: "https://github.com/jesuiszed/GestionVoyage0",
+      liveUrl: null,
+      technologies: [
+        { name: "Python", icon: SiPython, color: "#3776AB" }
+      ],
+      featured: false,
+      isFreelance: false
+    },
+    {
+      title: "VOD Service",
+      description: "Service backend pour la gestion de vidéos à la demande, développé en TypeScript avec architecture moderne.",
+      githubUrl: "https://github.com/jesuiszed/vod_service",
+      liveUrl: null,
+      technologies: [
+        { name: "TypeScript", icon: SiTypescript, color: "#3178C6" }
+      ],
+      isFreelance: true
+    }
+  ];
+
+  const moreProjects = [
+    {
+      title: "Zedfolio Portfolio",
+      description: "Portfolio personnel développé avec des technologies modernes.",
+      githubUrl: "https://github.com/jesuiszed/zedfolio",
+      liveUrl: "https://zedfolio-florian-zeds-projects.vercel.app",
+      technologies: [
+        { name: "React", icon: FaReact, color: "#61DAFB" }
+      ],
+      isFreelance: false
+    },
+    {
+      title: "Noel V2",
+      description: "Application web de Noël interactive avec animations festives.",
+      githubUrl: "https://github.com/jesuiszed/noel_v2",
+      liveUrl: "https://noel-v2.vercel.app",
+      technologies: [
+        { name: "CSS", icon: SiCss3, color: "#1572B6" }
+      ],
+      isFreelance: false
+    },
+    {
+      title: "InterlocTP Flutter",
+      description: "Application mobile Flutter pour la gestion d'interlocuteurs.",
+      githubUrl: "https://github.com/jesuiszed/InterlocTP_Flutter",
+      liveUrl: null,
+      technologies: [
+        { name: "Dart", icon: SiDart, color: "#0175C2" },
+        { name: "Flutter", icon: SiFlutter, color: "#02569B" }
+      ],
+      isFreelance: false
+    }
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -62,10 +105,10 @@ const featuredProjects = [
   };
 
   const projectVariants = {
-    hidden: { y: 50, opacity: 0 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
-      y: 0,
       opacity: 1,
+      y: 0,
       transition: {
         duration: 0.8,
         ease: "easeOut"
@@ -97,6 +140,92 @@ const featuredProjects = [
       }
     }
   };
+
+  // Composant de carte projet réutilisable
+  const ProjectCard = ({ project, index }) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      whileHover={{ scale: 1.02 }}
+      className={`p-6 rounded-2xl ${
+        isDark ? 'bg-white/5 border border-white/10' : 'bg-gray-50 border border-gray-200'
+      } hover:shadow-lg transition-all duration-300 h-full`}
+    >
+      <div className="flex flex-col h-full">
+        <h4 className={`text-xl font-bold mb-3 ${
+          isDark ? 'text-white' : 'text-gray-900'
+        } flex items-center`}>
+          {project.title}
+          {project.isFreelance && (
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.05 }}
+              className="ml-3 px-2 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg"
+            >
+              Freelance
+            </motion.span>
+          )}
+        </h4>
+        
+        <p className={`text-sm mb-4 flex-grow ${
+          isDark ? 'text-gray-300' : 'text-gray-600'
+        } leading-relaxed`}>
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.technologies.map((tech, techIndex) => {
+            const Icon = tech.icon;
+            return (
+              <div
+                key={techIndex}
+                className={`flex items-center space-x-1 px-2 py-1 rounded-full text-xs ${
+                  isDark ? 'bg-white/10' : 'bg-white'
+                }`}
+              >
+                <Icon style={{ color: tech.color }} className="text-sm" />
+                <span className={isDark ? 'text-gray-300' : 'text-gray-700'}>
+                  {tech.name}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="flex space-x-3 mt-auto">
+          <motion.a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium ${
+              isDark ? 'bg-white/10 hover:bg-white/20 text-white' 
+                    : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+            } transition-colors`}
+          >
+            <FaGithub className="text-sm" />
+            <span>Code</span>
+          </motion.a>
+          
+          {project.liveUrl && (
+            <motion.a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:shadow-lg transition-shadow"
+            >
+              <FaExternalLinkAlt className="text-sm" />
+              <span>Demo</span>
+            </motion.a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
 
   return (
     <>
@@ -139,151 +268,9 @@ const featuredProjects = [
           </motion.div>
 
           {/* Projects Grid - 2 columns */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {featuredProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                variants={projectVariants}
-                whileHover={{ scale: 1.02 }}
-                className={`group relative ${
-                  isDark ? 'bg-white/5 border border-white/10' : 'bg-white border border-gray-200'
-                } rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm h-full`}
-              >
-                {/* Project Image */}
-                <div className="relative overflow-hidden">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                    className="relative h-48"
-                  >
-                    <div className={`w-full h-full ${
-                      isDark ? 'bg-gradient-to-br from-blue-600 to-purple-700' 
-                             : 'bg-gradient-to-br from-blue-400 to-purple-500'
-                    } flex items-center justify-center`}>
-                      <span className="text-white text-xl font-bold text-center px-4">{project.title}</span>
-                    </div>
-                  </motion.div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    className="absolute inset-0 bg-black/50 flex items-center justify-center space-x-4"
-                  >
-                    <motion.a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="p-3 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors"
-                    >
-                      <FaGithub className="text-xl" />
-                    </motion.a>
-                    {project.liveUrl && (
-                      <motion.a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="p-3 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors"
-                      >
-                        <FaExternalLinkAlt className="text-xl" />
-                      </motion.a>
-                    )}
-                  </motion.div>
-                </div>
-
-                {/* Freelance Badge */}
-                {project.isFreelance && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="absolute top-4 right-4 z-10"
-                  >
-                    <motion.span
-                      whileHover={{ scale: 1.1 }}
-                      className="px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg backdrop-blur-sm"
-                    >
-                      Freelance
-                    </motion.span>
-                  </motion.div>
-                )}
-
-                {/* Project Info */}
-                <div className="p-6 flex flex-col h-full">
-                  <motion.h3 
-                    className={`text-xl font-bold mb-3 ${
-                      isDark ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
-                    {project.title}
-                  </motion.h3>
-                  
-                  <motion.p 
-                    className={`text-sm mb-4 flex-grow ${
-                      isDark ? 'text-gray-300' : 'text-gray-600'
-                    } leading-relaxed`}
-                  >
-                    {project.description}
-                  </motion.p>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, techIndex) => {
-                      const Icon = tech.icon;
-                      return (
-                        <motion.div
-                          key={techIndex}
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          className={`flex items-center space-x-1 px-2 py-1 rounded-full text-xs ${
-                            isDark ? 'bg-white/10' : 'bg-gray-100'
-                          }`}
-                        >
-                          <Icon style={{ color: tech.color }} className="text-sm" />
-                          <span className={`${
-                            isDark ? 'text-gray-300' : 'text-gray-700'
-                          }`}>
-                            {tech.name}
-                          </span>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Project Links */}
-                  <div className="flex space-x-3">
-                    <motion.a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -2, scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`flex items-center space-x-1 px-4 py-2 rounded-full text-sm font-medium ${
-                        isDark ? 'bg-white/10 hover:bg-white/20 text-white' 
-                               : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
-                      } transition-colors`}
-                    >
-                      <FaGithub className="text-sm" />
-                      <span>Code</span>
-                    </motion.a>
-                    
-                    {project.liveUrl && (
-                      <motion.a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ y: -2, scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center space-x-1 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium shadow-lg hover:shadow-xl transition-shadow"
-                      >
-                        <FaExternalLinkAlt className="text-sm" />
-                        <span>Demo</span>
-                      </motion.a>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
+              <ProjectCard key={index} project={project} index={index} />
             ))}
           </div>
 
@@ -358,129 +345,8 @@ const featuredProjects = [
               {/* Modal Content */}
               <div className="p-6">
                 <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    {
-                      title: "VOD Service",
-                      description: "Service backend pour la gestion de vidéos à la demande, développé en TypeScript avec architecture moderne.",
-                      githubUrl: "https://github.com/jesuiszed/vod_service",
-                      liveUrl: null,
-                      technologies: [
-                        { name: "TypeScript", icon: SiTypescript, color: "#3178C6" }
-                      ],
-                      isFreelance: true
-                    },
-                    {
-                      title: "Zedfolio Portfolio",
-                      description: "Portfolio personnel développé avec des technologies modernes.",
-                      githubUrl: "https://github.com/jesuiszed/zedfolio",
-                      liveUrl: "https://zedfolio-florian-zeds-projects.vercel.app",
-                      technologies: [
-                        { name: "React", icon: FaReact, color: "#61DAFB" }
-                      ],
-                      isFreelance: false
-                    },
-                    {
-                      title: "Noel V2",
-                      description: "Application web de Noël interactive avec animations festives.",
-                      githubUrl: "https://github.com/jesuiszed/noel_v2",
-                      liveUrl: "https://noel-v2.vercel.app",
-                      technologies: [
-                        { name: "CSS", icon: SiCss3, color: "#1572B6" }
-                      ],
-                      isFreelance: false
-                    },
-                    {
-                      title: "InterlocTP Flutter",
-                      description: "Application mobile Flutter pour la gestion d'interlocuteurs.",
-                      githubUrl: "https://github.com/jesuiszed/InterlocTP_Flutter",
-                      liveUrl: null,
-                      technologies: [
-                        { name: "Dart", icon: SiDart, color: "#0175C2" },
-                        { name: "Flutter", icon: SiFlutter, color: "#02569B" }
-                      ],
-                      isFreelance: false
-                    }
-                  ].map((project, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ scale: 1.02 }}
-                      className={`p-6 rounded-2xl ${
-                        isDark ? 'bg-white/5 border border-white/10' : 'bg-gray-50 border border-gray-200'
-                      } hover:shadow-lg transition-all duration-300`}
-                    >
-                      <h4 className={`text-xl font-bold mb-3 ${
-                        isDark ? 'text-white' : 'text-gray-900'
-                      }`}>
-                        {project.title}
-                        {project.isFreelance && (
-                          <motion.span
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            whileHover={{ scale: 1.05 }}
-                            className="ml-3 px-2 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg"
-                          >
-                            Freelance
-                          </motion.span>
-                        )}
-                      </h4>
-                      
-                      <p className={`text-sm mb-4 ${
-                        isDark ? 'text-gray-300' : 'text-gray-600'
-                      } leading-relaxed`}>
-                        {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.map((tech, techIndex) => {
-                          const Icon = tech.icon;
-                          return (
-                            <div
-                              key={techIndex}
-                              className={`flex items-center space-x-1 px-2 py-1 rounded-full text-xs ${
-                                isDark ? 'bg-white/10' : 'bg-white'
-                              }`}
-                            >
-                              <Icon style={{ color: tech.color }} className="text-sm" />
-                              <span className={isDark ? 'text-gray-300' : 'text-gray-700'}>
-                                {tech.name}
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-
-                      <div className="flex space-x-3">
-                        <motion.a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.05 }}
-                          className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium ${
-                            isDark ? 'bg-white/10 hover:bg-white/20 text-white' 
-                                   : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
-                          } transition-colors`}
-                        >
-                          <FaGithub className="text-sm" />
-                          <span>Code</span>
-                        </motion.a>
-                        
-                        {project.liveUrl && (
-                          <motion.a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05 }}
-                            className="flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:shadow-lg transition-shadow"
-                          >
-                            <FaExternalLinkAlt className="text-sm" />
-                            <span>Demo</span>
-                          </motion.a>
-                        )}
-                      </div>
-                    </motion.div>
+                  {moreProjects.map((project, index) => (
+                    <ProjectCard key={index} project={project} index={index} />
                   ))}
                 </div>
               </div>
