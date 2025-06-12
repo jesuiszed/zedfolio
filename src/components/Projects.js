@@ -2,8 +2,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaTimes, FaPython, FaJs } from 'react-icons/fa';
-import { SiNextdotjs, SiTailwindcss, SiTypescript, SiJavascript, SiPython, SiMongodb, SiExpress, SiHtml5, SiCss3, SiDart, SiFlutter } from 'react-icons/si';
+import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaTimes, FaPython, FaJs, FaJava } from 'react-icons/fa';
+import { SiNextdotjs, SiTailwindcss, SiTypescript, SiJavascript, SiPython, SiMongodb, SiExpress, SiHtml5, SiCss3, SiDart, SiFlutter, SiDotnet, SiDjango, SiBootstrap, SiSpring, SiKotlin, SiCsharp } from 'react-icons/si';
 
 const Projects = () => {
   const { t } = useLanguage();
@@ -14,82 +14,124 @@ const Projects = () => {
 
   const featuredProjects = [
     {
-      title: "GStock API",
-      description: "API de gestion de stock développée en JavaScript, permettant la gestion complète des articles et des mouvements de stock.",
-      githubUrl: "https://github.com/jesuiszed/gstockApi",
-      liveUrl: null,
+      title: "Zedfolio Portfolio",
+      description: "Portfolio personnel développé avec React et TailwindCSS, présentant mes projets et compétences avec une interface moderne et responsive.",
+      githubUrl: "https://github.com/jesuiszed/zedfolio",
+      liveUrl: "https://zedfolio-florian-zeds-projects.vercel.app",
       technologies: [
-        { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
-        { name: "Node.js", icon: FaNodeJs, color: "#339933" }
+        { name: "React", icon: FaReact, color: "#61DAFB" },
+        { name: "TailwindCSS", icon: SiTailwindcss, color: "#06B6D4" }
       ],
-      featured: false,
+      featured: true,
       isFreelance: false
     },
     {
-      title: "2FA Dotnet",
-      description: "Projet d'authentification à double facteur (2FA) en .NET, incluant interface web sécurisée et gestion avancée de la sécurité.",
+      title: "TwoFA",
+      description: "Système d'authentification à double facteur (2FA) développé en C# avec .NET, offrant une couche de sécurité supplémentaire pour les applications web.",
       githubUrl: "https://github.com/jesuiszed/2faDotnet",
       liveUrl: null,
       technologies: [
-        { name: "CSS", icon: SiCss3, color: "#1572B6" }
+        { name: "C#", icon: SiCsharp, color: "#239120" },
+        { name: ".NET", icon: SiDotnet, color: "#512BD4" }
       ],
-      featured: false,
+      featured: true,
       isFreelance: true
     },
     {
-      title: "Gestion Voyage",
-      description: "Application de gestion de voyages développée en Python avec interface utilisateur intuitive et fonctionnalités complètes.",
-      githubUrl: "https://github.com/jesuiszed/GestionVoyage0",
+      title: "GStock API",
+      description: "API de gestion de stock développée en C# avec .NET, permettant la gestion complète des articles et des mouvements de stock.",
+      githubUrl: "https://github.com/jesuiszed/gstockApi",
       liveUrl: null,
       technologies: [
-        { name: "Python", icon: SiPython, color: "#3776AB" }
+        { name: "C#", icon: SiCsharp, color: "#239120" },
+        { name: ".NET", icon: SiDotnet, color: "#512BD4" }
       ],
-      featured: false,
+      featured: true,
       isFreelance: false
     },
     {
-      title: "VOD Service",
-      description: "Service backend pour la gestion de vidéos à la demande, développé en TypeScript avec architecture moderne.",
-      githubUrl: "https://github.com/jesuiszed/vod_service",
+      title: "Voyager",
+      description: "Site vitrine d'une agence de voyage développé avec Python et Django, présentant des destinations et offres de voyage avec un design élégant en TailwindCSS.",
+      githubUrl: "https://github.com/jesuiszed/voyager",
       liveUrl: null,
       technologies: [
-        { name: "TypeScript", icon: SiTypescript, color: "#3178C6" }
+        { name: "Python", icon: SiPython, color: "#3776AB" },
+        { name: "Django", icon: SiDjango, color: "#092E20" },
+        { name: "TailwindCSS", icon: SiTailwindcss, color: "#06B6D4" }
       ],
+      featured: true,
       isFreelance: true
     }
   ];
 
   const moreProjects = [
     {
-      title: "Zedfolio Portfolio",
-      description: "Portfolio personnel développé avec des technologies modernes.",
-      githubUrl: "https://github.com/jesuiszed/zedfolio",
-      liveUrl: "https://zedfolio-florian-zeds-projects.vercel.app",
-      technologies: [
-        { name: "React", icon: FaReact, color: "#61DAFB" }
-      ],
-      isFreelance: false
-    },
-    {
-      title: "Noel V2",
-      description: "Application web de Noël interactive avec animations festives.",
-      githubUrl: "https://github.com/jesuiszed/noel_v2",
-      liveUrl: "https://noel-v2.vercel.app",
-      technologies: [
-        { name: "CSS", icon: SiCss3, color: "#1572B6" }
-      ],
-      isFreelance: false
-    },
-    {
-      title: "InterlocTP Flutter",
-      description: "Application mobile Flutter pour la gestion d'interlocuteurs.",
-      githubUrl: "https://github.com/jesuiszed/InterlocTP_Flutter",
+      title: "gestVoyage",
+      description: "Application de gestion de voyages développée avec Python et Django, facilitant l'organisation et le suivi des voyages avec une interface utilisateur intuitive.",
+      githubUrl: "https://github.com/jesuiszed/GestionVoyage0",
       liveUrl: null,
       technologies: [
-        { name: "Dart", icon: SiDart, color: "#0175C2" },
-        { name: "Flutter", icon: SiFlutter, color: "#02569B" }
+        { name: "Python", icon: SiPython, color: "#3776AB" },
+        { name: "Django", icon: SiDjango, color: "#092E20" },
+        { name: "TailwindCSS", icon: SiTailwindcss, color: "#06B6D4" }
       ],
       isFreelance: false
+    },
+    {
+      title: "Kouty Medical Service",
+      description: "Plateforme de services médicaux développée avec Python, Django et Bootstrap, offrant une solution complète pour la gestion des rendez-vous et dossiers médicaux.",
+      githubUrl: "https://github.com/jesuiszed/kouty-medical",
+      liveUrl: null,
+      technologies: [
+        { name: "Python", icon: SiPython, color: "#3776AB" },
+        { name: "Django", icon: SiDjango, color: "#092E20" },
+        { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3" }
+      ],
+      isFreelance: true
+    },
+    {
+      title: "PPM (PlayPark Manager)",
+      description: "Système de gestion pour parcs de loisirs, développé avec Python et Django, permettant d'optimiser les opérations et l'expérience client.",
+      githubUrl: "https://github.com/jesuiszed/ppm",
+      liveUrl: null,
+      technologies: [
+        { name: "Python", icon: SiPython, color: "#3776AB" },
+        { name: "Django", icon: SiDjango, color: "#092E20" }
+      ],
+      isFreelance: false
+    },
+    {
+      title: "Budget Visualiser",
+      description: "Application de visualisation budgétaire développée en Java avec Spring Boot, permettant une gestion claire et interactive des finances personnelles.",
+      githubUrl: "https://github.com/jesuiszed/budget-visualiser",
+      liveUrl: null,
+      technologies: [
+        { name: "Java", icon: FaJava, color: "#007396" },
+        { name: "Spring Boot", icon: SiSpring, color: "#6DB33F" }
+      ],
+      isFreelance: false
+    },
+    {
+      title: "WatchApp",
+      description: "Application mobile pour amateurs de montres, développée avec Java et Kotlin, offrant un catalogue, des critiques et des recommandations.",
+      githubUrl: "https://github.com/jesuiszed/watchapp",
+      liveUrl: null,
+      technologies: [
+        { name: "Java", icon: FaJava, color: "#007396" },
+        { name: "Kotlin", icon: SiKotlin, color: "#7F52FF" }
+      ],
+      isFreelance: true
+    },
+    {
+      title: "VOD Service",
+      description: "Service backend pour plateforme de vidéo à la demande, développé en Java avec Spring Boot, gérant le streaming, les utilisateurs et les abonnements.",
+      githubUrl: "https://github.com/jesuiszed/vod_service",
+      liveUrl: null,
+      technologies: [
+        { name: "Java", icon: FaJava, color: "#007396" },
+        { name: "Spring Boot", icon: SiSpring, color: "#6DB33F" }
+      ],
+      isFreelance: true
     }
   ];
 
