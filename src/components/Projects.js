@@ -17,7 +17,7 @@ const Projects = () => {
       title: "Zedfolio Portfolio",
       description: "Portfolio personnel développé avec React et TailwindCSS, présentant mes projets et compétences avec une interface moderne et responsive.",
       githubUrl: "https://github.com/jesuiszed/zedfolio",
-      liveUrl: "https://zedfolio-florian-zeds-projects.vercel.app",
+      liveUrl: "https://flozed.me",
       technologies: [
         { name: "React", icon: FaReact, color: "#61DAFB" },
         { name: "TailwindCSS", icon: SiTailwindcss, color: "#06B6D4" }
@@ -81,7 +81,7 @@ const Projects = () => {
       title: "Kouty Medical Service",
       description: "Plateforme de services médicaux développée avec Python, Django et Bootstrap, offrant une solution complète pour la gestion des rendez-vous et dossiers médicaux.",
       githubUrl: "https://github.com/jesuiszed/kouty-medical",
-      liveUrl: null,
+      liveUrl: "https://kouty.ma",
       technologies: [
         { name: "Python", icon: SiPython, color: "#3776AB" },
         { name: "Django", icon: SiDjango, color: "#092E20" },
